@@ -1,0 +1,18 @@
+#add preseed
+chmod +w -R iso/install.amd/
+gunzip iso/install.amd/initrd.gz
+echo preseed.cfg | cpio -H newc -o -A -F iso/install.amd/initrd
+gzip iso/install.amd/initrd
+chmod -w -R iso/install.amd/
+
+#md5sum
+cd iso
+chmod +w md5sum.txt
+find -follow -type f ! -name md5sum.txt -print0 | xargs -0 md5sum > md5sum.txt
+chmod -w md5sum.txt
+cd ..
+
+#generate iso
+genisoimage -r -J -b isolinux/isolinux.bin -c isolinux/boot.cat \
+            -no-emul-boot -boot-load-size 4 -boot-info-table \
+            -o "isobuild/preseed$1.iso" iso
