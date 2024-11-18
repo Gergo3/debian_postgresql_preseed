@@ -1,3 +1,4 @@
+if ! [ -z $1 ]; then
 #add preseed
 chmod +w -R iso/install.amd/
 gunzip iso/install.amd/initrd.gz
@@ -16,3 +17,7 @@ cd ..
 genisoimage -r -J -b isolinux/isolinux.bin -c isolinux/boot.cat \
             -no-emul-boot -boot-load-size 4 -boot-info-table \
             -o "isobuild/preseed$1.iso" iso
+
+else
+    echo "missing parameter"
+fi
