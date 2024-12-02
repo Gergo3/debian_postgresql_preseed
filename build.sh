@@ -8,9 +8,9 @@ chmod -w -R iso/install.amd/
 
 #add scripts
 mkdir -p iso/preseed/
-cp install.sh iso/preseed
+cp install.sh iso/preseed/
 cp -r install.d iso/preseed/
-chmod +x  ./iso/reseed/install.d/*.sh
+chmod +x  iso/preseed/install.d/*.sh
 
 #md5sum
 cd iso
