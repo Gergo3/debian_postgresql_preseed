@@ -11,7 +11,7 @@ $(targetdir)/preseedn.iso : $(builddir)/md5sum.txt $(targetdir)
 	#generate iso
 	genisoimage -r -J -b isolinux/isolinux.bin -c isolinux/boot.cat \
 		    -no-emul-boot -boot-load-size 4 -boot-info-table \
-		    -o "$(targetdir)" $(builddir)
+		    -o "$(targetdir)/preseedn" $(builddir)
 
 $(builddir) : $(baseiso)
 	mkdir -p $(builddir)
