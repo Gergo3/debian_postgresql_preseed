@@ -28,10 +28,8 @@ update : build/dl
 	rm build/dl
 	
 $(baseiso) : build/dl build/dloaded
-	cd build/dl
+	cd build/dl; \
 	jigdo-lite --scan . --noask https://cdimage.debian.org/debian-cd/current/amd64/jigdo-cd/debian-$(basever)-amd64-netinst.jigdo
-	cd ../..
-
 
 $(targetdir) : 
 	mkdir -p $@
@@ -56,11 +54,10 @@ $(scrd)/install.d : install.d $(scrd)
 
 $(builddir)/md5sum.txt : $(isoa) $(builddir)
 	#md5sum
-	cd $(builddir)
-	chmod +w md5sum.txt
-	find -follow -type f ! -name md5sum.txt -print0 | xargs -0 md5sum > md5sum.txt
+	cd $(builddir); \
+	chmod +w md5sum.txt; \
+	find -follow -type f ! -name md5sum.txt -print0 | xargs -0 md5sum > md5sum.txt; \
 	chmod -w md5sum.txt
-	cd ../..
 
 clean :
 	rm -rf $(builddir)
