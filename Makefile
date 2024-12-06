@@ -24,7 +24,7 @@ build/dl :
 build/dloaded : build/dl
 	touch $@
 
-update : build/dl
+update :
 	rm build/dl
 	
 $(baseiso) : build/dl build/dloaded
