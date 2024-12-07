@@ -66,3 +66,5 @@ clean :
 	rm build/dloaded
 
 .PHONY : update clean
+
+.IGNORE : $(baseiso)
