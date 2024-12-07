@@ -47,7 +47,7 @@ $(scrd) : $(builddir)
 	mkdir -p $@
 
 $(scrd)/install.sh : install.sh $(scrd)
-	cp install.sh $(srcd)/
+	cp install.sh $(scrd)/
 
 $(scrd)/install.d : install.d $(scrd)
 	cp -r install.d $(scrd)/
