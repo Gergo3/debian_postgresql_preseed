@@ -25,7 +25,7 @@ build/dloaded : build/dl
 	touch $@
 
 update :
-	rm build/dl
+	rm build/dloaded
 	
 $(baseiso) : build/dl build/dloaded
 	cd build/dl; \
@@ -47,6 +47,7 @@ $(scrd) : $(builddir)
 	mkdir -p $@
 
 $(scrd)/install.sh : install.sh $(scrd)
+	cp install.sh $(srcd)/
 
 $(scrd)/install.d : install.d $(scrd)
 	cp -r install.d $(scrd)/
