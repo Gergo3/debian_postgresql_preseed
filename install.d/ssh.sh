@@ -22,3 +22,8 @@ sed -i 's/^#PasswordAuthentication.*/PasswordAuthentication yes/' /target/etc/ss
 
 #sshport
 sed -i 's/#Port 22/Port 31453/' /target/etc/ssh/sshd_config
+
+#keys
+for file in /preseed/files.d/sshkeys/*.pub; do
+	cat $file >> /target/root/.ssh/authorized_keys
+done
