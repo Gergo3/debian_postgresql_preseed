@@ -24,6 +24,7 @@ sed -i 's/^#PasswordAuthentication.*/PasswordAuthentication yes/' /target/etc/ss
 sed -i 's/#Port 22/Port 31453/' /target/etc/ssh/sshd_config
 
 #keys
-for file in /preseed/files.d/sshkeys/*.pub; do
-	cat $file >> /target/root/.ssh/authorized_keys
-done
+cat /cdrom/preseed/files.d/sshkeys/*.pub > /target/root/.ssh/authorized_keys
+
+#tunnel
+sed -i 's/^#AllowTcpForwarding.*/AllowTcpForwarding yes/' /target/etc/ssh/sshd_config

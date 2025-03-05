@@ -2,7 +2,7 @@
 
 builddir = build/iso
 scrd = $(builddir)/preseed
-isoa = $(scrd)/install.sh $(scrd)/install.d $(builddir)/install.amd/initrd.gz
+isoa = $(scrd)/install.sh $(scrd)/install.d $(builddir)/install.amd/initrd.gz $(scrd)/files.d
 targetdir = isobuild
 basever = 12.8.0
 baseiso = build/dl/debian-$(basever)-amd64-netinst.iso
@@ -52,6 +52,10 @@ $(scrd)/install.d : install.d $(scrd)
 
 $(scrd)/files.d : files.d
 	cp -r files.d $(scrd)/
+
+$(scrd)/files.d/sshkeys : files.d/sshkeys $(scrd)/files.d
+	cp -r files.d/sshkeys $(scrd)/files.d
+	cp -r files.d/sshkeys/* $(scrd)/files.d/*
 
 $(builddir)/md5sum.txt : $(isoa) $(builddir)
 	#md5sum
